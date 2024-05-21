@@ -345,6 +345,7 @@ def wybierz_miejsce():
         odp19 = co_robisz9()
 odp10 = wybierz_miejsce()
 # -------------------------------------------
+print("-=-=-=-=-=-=-="*7)
 animate_text("W drodze do sklepu nikogo nie było,")
 #--------------------------------------------
 animate_text("-=-=-=-=-=-=-=-="*7)
@@ -697,3 +698,6 @@ animate_text("'masz racje, przynajmniej tyle,'")
 animate_text("rozglądałeś się po placówce oraz zapoznywałeś się z ludzmi,")
 animate_text(" w pewnym momencie zawył alarm, żołnieże coś krzyczą a mur się rozwala, Sory Przyszły, całą gromadą to tak jaby wiedziały że tu jesteśmy,")
 animate_text("NIebo nagle zrobiło sięciemne, słonce znikło,")
+animate_text("Ktoś wykrzyknął twe imie, byś uważał, odwracasz sietylko po to by wiedzieć na ciebie spadający gruz")
+print("=-=-=-=-=-=-=-=-="*7)
+#========================== ILL ME
