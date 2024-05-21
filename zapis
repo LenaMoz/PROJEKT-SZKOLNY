@@ -1,0 +1,699 @@
+import sys
+import time
+
+def animate_text(text, delay=0.03):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
+
+#---------------------------------------
+class Character:
+    def __init__(self):
+        self.name = input("podaj imie: ")
+        self.max_hp = 100
+        self.max_stamina = 50
+        self.current_hp = 100
+        self.stamina = 30
+        self.yourattack = 2
+
+
+    def take_damage(self, damage_amount):
+        self.current_hp -= damage_amount
+        if self.current_hp <= 0:
+            animate_text(f"{self.name}, nie żyjesz")
+            sys.exit(0)
+
+
+    def gain_stamina(self, stamina):
+        self.stamina += stamina
+        if self.stamina > self.max_stamina:
+            self.stamina = self.max_stamina
+
+    def no_stamina(self, stamina):
+        self.stamina -= stamina
+        if self.stamina < 0:
+            self.stamina = 0
+
+    def heal(self, heal_amount):
+        self.current_hp += heal_amount
+        if self.current_hp > self.max_hp:
+            self.current_hp = self.max_hp
+
+    def do_attack(self, attack):
+        self.yourattack += attack
+
+player = Character()
+#---------------------------------------
+class Matka:
+    def __init__(self):
+        self.Mmax_hp = 50
+        self.Mcurrent_hp = 50
+        self.Mherattack = 10
+
+    def take_damage(self, Mdamage_amount):
+        self.Mcurrent_hp -= Mdamage_amount
+        if self.Mcurrent_hp <= 0:
+            animate_text("Pokonałeś ją! ")
+        else:
+            animate_text(f"Matka jeszcze zyje.")
+
+mother = Matka()
+#---------------------------------
+class Potwor:
+    def __init__(self):
+        self.pmax_hp = 50
+        self.pcurrent_hp = 50
+        self.pherattack = 5
+
+    def take_damage(self, pdamage_amount):
+        self.pcurrent_hp -= pdamage_amount
+        if self.pcurrent_hp <= 0:
+            animate_text("Pokonałeś to!")
+        else:
+            animate_text(f"to coś jeszcze zyje.")
+
+potwor = Potwor()
+#-------------------------------------------------
+class Potwor2:
+    def __init__(self):
+        self.p2max_hp = 10
+        self.p2current_hp = 10
+        self.p2herattack = 2
+
+    def take_damage(self, p2damage_amount):
+        self.p2current_hp -= p2damage_amount
+        if self.p2current_hp <= 0:
+            animate_text("Pokonałeś to!")
+        else:
+            animate_text(f"to coś jeszcze zyje.")
+
+potwor2 = Potwor2()
+#---------------------------------
+animate_text("Promienie słońca wpadły przez odsłonięte okno prosto na twoją twarz. ")
+animate_text("Powoli otworzyłeś oczy i przeciągnąłeś się. ")
+animate_text("Twoją uwagę zwrócił fakt, iż było aż zbyt cicho. ")
+animate_text("Co było dziwne biorąc pod uwagę, że zazwyczaj w sobotę dziaciaki sąsiadów już jeździły po osiedlu ")
+animate_text("*Która jest godzina?* ")
+animate_text("Sięgnąłeś po telefon. Wyświetlacz pokazywał godzinę 9:30. ")
+animate_text("*Dziwne... Zazwyczaj już by ktoś mnie siłą zrzucił z łóżka* ")
+#------------------------------------
+def wybierz_odp1():
+    animate_text("a/A - Zawołaj ")
+    animate_text("b/B - Wstań ")
+    odp1 = input().upper()
+    if odp1 == "A":
+        animate_text("*Mamo?* ")
+        animate_text("Brak jakiej kolwiek odpowiedzi na twoje wołanie. ")
+        animate_text("*Hm... Może wyszła na zakupy.* ")
+    if odp1 == "B":
+        return 0
+    else:
+        return 0
+odp1 = wybierz_odp1()
+animate_text("Wstałeś z łóżka i podeszłeś do drzwi. Wyjrzałeś na korytarz. ")
+animate_text("Jest cicho i pusto ")
+#_----------------------------------------------------
+def wybierz_odp2():
+    animate_text("a/A - Wyjdź z pokoju ")
+    animate_text("b/B - Przebierz się zanim wyjdziesz ")
+    odp2 = input().upper()
+    if odp2 == "A":
+        return 0
+    if odp2 == "B":
+        animate_text("przebrałeś się w wygodnie ubrania, +5 do staminy ")
+        player.gain_stamina(5)
+    else:
+        return 0
+odp2 = wybierz_odp2()
+#-------------------------------------------------------------
+animate_text("wyszedłeś z pokoju by rozejrzec się czy ktoś jest jeszcze w domu ")
+animate_text("*huh? Mamy rzeczy dalej są. Ale gdzie ona jest?* ")
+animate_text("Zszedłeś myśląc, że spotkasz tam swoją mame ")
+animate_text("Jednak to co zobaczyłeś to niewyglądało zupełnie jak twoja mama ")
+#----------------------------------------------------------
+def choose_attack():
+    animate_text('a/A - Rzuć w nią krzesło ')
+    animate_text('b/B - Przyglądaj się dalej ')
+    co = input().upper()
+    if co == 'A':
+        animate_text("Ten potwór się cofnął, co daje ci więcej czasu, ")
+        def wybierz_odp2():
+            animate_text("a/A - Uciekaj ")
+            odp2 = input().upper()
+            if odp2 == "A":
+                return 0
+            else:
+                animate_text("Co tak stoisz? (-10hp) ")
+                player.take_damage(mother.Mherattack)
+            odp2 = wybierz_odp2()
+    elif co == 'B':
+        animate_text("To coś co miało być twoją mamą zadaje ci obrażenia (-10hp) ")
+        player.take_damage(mother.Mherattack)
+    else:
+        animate_text("You lose a turn ")
+        return 0
+attack = choose_attack()
+animate_text("Udało ci się jakimś cudem uciec do garażu, tylko co teraz? ")
+#_----------------------------------------------------------------------
+def wybierz_odp5():
+    animate_text("a/A - Rozglądaj się po przydatne rzeczy ")
+    animate_text("b/B - Przemyśl sytuacje ")
+    odp5 = input().upper()
+    if odp5 == "A":
+        animate_text(" W garażu znajdujesz wiele dobrych rzeczy, ale z wszystkimi trudno się zabrać. ")
+        def wybierz_bron():
+            animate_text("a - Grabie, wyglądają na ciężkie ale są ostre. ")
+            animate_text("b - Stare buty ojca. Twój rozmiar oraz są świetne do biegania, aż przypominając ci się stare czasy. ")
+            animate_text("c - Młotek, trochę cieżki ale poręczny. ")
+            animate_text("d - Piła mechaniczna. Działa ale jest bardzo ciężka. ")
+            animate_text("e - Nic nie bierzesz.")
+            odp7 = input().upper()
+            if odp7 == 'A':
+                animate_text("Bierzesz grabie, są cieżkie więc tylko je. (+5 attack, -2 stamina)")
+                player.do_attack(5)
+                player.no_stamina(2)
+            elif odp7 == 'B':
+                animate_text("Pasują idealnie i są wygodne (+5 stamina),")
+                player.gain_stamina(5)
+            elif odp7 == "C":
+                animate_text("Młotek to dobra sprawa.(+2 attacku)")
+                player.do_attack(2)
+            elif odp7 == 'D':
+                animate_text("Bardzo ciężka, trudno się z nią chodzi. (-10staminy, +10 attaku)")
+                player.do_attack(10)
+                player.no_stamina(10)
+            else:
+                return 0
+        odp7 = wybierz_bron()
+    if odp5 == "B":
+        animate_text("*Co się do diabła dzieje?! Co to było? Czy to naprawdę była moja Mama?* ")
+        animate_text("Rozmyślasz całą sytuację, ale czy coś ci to daje? ")
+    else:
+        return 0
+odp5 = wybierz_odp5()
+#_----------------------------------------------------------------
+animate_text("Wyglądasz przez okno, ale nie ma ani jedenj żywej duszy. ")
+animate_text("Słyszysz walenie w drzwi od garażu, odwracasz się. ")
+animate_text("W tym samym momencie drzwi od garażu odpadają i wchodzi 'mama' ")
+animate_text("Rozgladasz sie szybko czy jest jak uciec , no tak mozesz przez okno. ")
+animate_text("Jednakże nie masz czasu, bo 'mama' już na ciebie biegnie")
+animate_text("Pozostało ci się z nią walczyć. ")
+animate_text("Niepowinno to być trudne, prawda? ")
+#-----------------------------------------
+def attack_mother():
+    if player.yourattack >= mother.Mcurrent_hp:
+        animate_text(f"Zadałeś matce {mother.Mcurrent_hp} obrażeń i pokonałeś ją!")
+        mother.take_damage(mother.Mcurrent_hp)  
+    else:
+        animate_text(f"Zadałeś matce {player.yourattack} obrażeń!")
+        mother.take_damage(player.yourattack) 
+
+#--Symulacja walki
+while player.current_hp > 0 and mother.Mcurrent_hp > 0:
+    attack_mother()
+    if mother.Mcurrent_hp <= 0:
+        break 
+
+    player.take_damage(mother.Mherattack)
+    if player.current_hp <= 0:
+        break  
+
+if player.current_hp <= 0:
+    animate_text(f"{player.name}, przegrałeś!")
+    sys.exit(0)
+elif mother.Mcurrent_hp <= 0:
+    animate_text(f"{player.name}, wygrałeś. Pokonałeś matkę!")
+
+animate_text("Jesteś teraz sam w domu. Możesz się rozejrzeć po domu, może coś jeszcze znajdziesz przydatnego. ")
+animate_text(" to gdzie najpierw idziesz? ")
+#------------------------------
+def wybierz_miejsce():
+    animate_text("a - kuchnia")
+    animate_text("b - salon")
+    animate_text("c - łazienka")
+    odp10 = input().upper()
+    if odp10 == 'A':
+        animate_text("udałeś się najpierw do kuchni,co robisz? ")
+        def co_robisz1():
+            animate_text("a - poszukaj czegoś")
+            animate_text("b - wyjdz.")
+            odp11 = input().upper()
+            if odp11 == 'A':
+                animate_text("znalazłeś jedzenie, a ze jestes głodny zjadłeś troche (+5hp) ")
+                animate_text("znalazłes również nożyk poręczny, (+2 attaku)")
+                player.do_attack(2)
+                player.heal(5)
+                animate_text("w innych pokojach nic nie znalazłeś opróch skrzynki z narzędziami ")
+            if odp11 == "B":
+                animate_text("wyszedłeś z kuchni. idz: ")
+                def wybierz_miejsce2():
+                    animate_text("a - salon")
+                    animate_text("b - łazienka")
+                    odp12 = input().upper()
+                    if odp12 == 'A':
+                        animate_text("udałeś się do salonu,co robisz?")
+                        def co_robisz2():
+                            animate_text("a - poszukaj czegoś")
+                            animate_text("b - wyjdz.")
+                            odp13 = input().upper()
+                            if odp13 == 'A':
+                                animate_text("znalazłeś starą krzynke z nażedziami w szawce, troche dziwne nie?")
+                                animate_text("wziołeś ją ze sobą, może się przyta")
+                                animate_text("została ci tylko łazienka w której nic nie znalazłeś")
+                            if odp13 == "B":
+                                animate_text("wyszedłeś z salonu")
+                                animate_text("została ci tylko łazienka, w której nic nie znalazłeś")
+                            else: 
+                                return 0
+                        odp13 = co_robisz2()
+                    if odp12 == "B":
+                        animate_text("w łazience nic nie znalazłeś")
+                        animate_text("został ci tylko salon, w którym")
+                        animate_text("znalazłeś starą krzynke z nażedziami w szawce, troche dziwne nie?")
+                        animate_text("wziołeś ją ze sobą, może się przyta")
+                    else:
+                        return 0
+                odp12 = wybierz_miejsce2()
+            else:
+                return 0
+        odp11 = co_robisz1()
+    if odp10 == 'B':
+        animate_text(" udałeś się napierw do salonu, co robisz?")
+        def co_robisz3():
+            animate_text("a - poszukaj czegoś")
+            animate_text("b - wyjdz.")
+            odp14 = input().upper()
+            if odp14 == 'A':
+                animate_text("znalazłeś starą krzynke z nażedziami w szawce, troche dziwne nie?")
+                animate_text("wziołeś ją ze sobą, może się przyta")
+                def miejsce20():
+                    animate_text("a- kuchnia")
+                    animate_text("b- salon")
+                    odp20 = input().upper()
+                    if odp20 == 'A':
+                        animate_text("znalazłeś jedzenie, a ze jestes głodny zjadłeś troche (+5hp)")
+                        animate_text("znalazłes również nożyk poręczny, (+2 attaku)")
+                        player.do_attack(2)
+                        player.heal(5)
+                    if odp20 == "B":
+                        ("poszedłeś do salonu gdzie tam znalazłeś skrzynkę z narzędziami")
+                    else:
+                        return 0
+                odp20 = miejsce20()
+            if odp14 == "B":
+                animate_text("wyszedłeś z salonu")
+                def wybierz_miejsce5():
+                    animate_text("a - kuchnia")
+                    animate_text("b - łazienka")
+                    odp15 = input().upper()
+                    if odp15 == 'A':
+                        animate_text("udałeś się do kuchni,")
+                        animate_text("znalazłeś jedzenie, a ze jestes głodny zjadłeś troche (+5hp)")
+                        animate_text("znalazłes również nożyk poręczny, (+2 attaku)")
+                        player.do_attack(2)
+                        player.heal(5)
+                        animate_text("została ci tylko łązienka w której nic nie znalazłeś")
+                    if odp15 == "B":
+                        animate_text("w łazience nic nie znalazłeś")
+                        animate_text("została ci kuchnia w której znalazłes")
+                        animate_text("jedzenie, a ze jestes głodny zjadłeś troche (+5hp)")
+                        animate_text("znalazłes również nożyk poręczny, (+2 attaku)")
+                        player.do_attack(2)
+                        player.heal(5)
+                    else:
+                        return 0
+                odp15 = wybierz_miejsce5()
+        odp14 = co_robisz3()
+    if odp10 == "C":
+        animate_text("udałes się najperw do łazienki")
+        def co_robisz9():
+            animate_text("a - poszukaj czegoś")
+            animate_text("b - wyjdz.")
+            odp19 = input().upper()
+            if odp19 == 'A':
+                animate_text("w łazience nic nie znalazłes,")
+                animate_text("w innych pokojach znalazłeś skrzynke z narzędziami, jedzenie, które zjadłeś oraz nozyk podreczny(+5hp +2attack)")
+                player.do_attack(2)
+                player.heal(5)
+            if odp19 == "B":
+                animate_text("w innych pokojach znalazłeś skrzynke z narzędziami, jedzenie, które zjadłeś oraz nozyk podreczny(+5hp +2attack)")
+                player.do_attack(2)
+                player.heal(5)
+            else: 
+                return 0
+        odp19 = co_robisz9()
+odp10 = wybierz_miejsce()
+# -------------------------------------------
+animate_text("W drodze do sklepu nikogo nie było,")
+#--------------------------------------------
+animate_text("-=-=-=-=-=-=-=-="*7)
+animate_text("Szłeś dobre 10 minut, nikogo nie spotkałeś, jedyne co widziałeś to przewalone śmieci, puste auta a niektóre nawet rozbite.")
+animate_text("Znalazłeś pierwszy sklep, sklep spożywczy")
+animate_text("patrząc przez okna nie było nic widzać, a drzwi wyglądają na otwarte wchodzisz?")
+# -------------------------------------------------------------------------------------
+def sklep():
+    animate_text("a/A - wejdz")
+    animate_text("b/B - poszukaj innego sklepu")
+    odpsklep = input().upper()
+    if odpsklep == 'A':
+        return 0
+    if odpsklep == "B":
+        animate_text("proszę, bądz miły i wejdz do sklepu.")
+        def sklep2():
+            animate_text("a/A - wejdz,")
+            animate_text("b/B - poszukaj innego sklepu")
+            odpsklep2 = input().upper()
+            if odpsklep2 == 'A':
+                return 0 
+            if odpsklep2 == "B":
+                animate_text("słuchaj, i tak wejdziesz do slepu czy tego chcesz czy nie.")
+                def sklep3():
+                    animate_text("a/A - wejdz,")
+                    animate_text("b/B - poszukaj innego sklepu")
+                    odpsklep3 = input().upper()
+                    if odpsklep3 == 'a':
+                        return 0 
+                    if odpsklep3 == "B":
+                        animate_text("sam tego chciałeś, jak nie po miłemu to na siłe (-5hp)")
+                        player.take_damage(5)
+                    else:
+                        return 0
+                odpsklep3 = sklep3()
+            else:
+                return 0
+        odpsklep2 = sklep2()
+    else:
+        return 0
+odpsklep = sklep()
+#-----------------------------------------------------------------------
+animate_text("Wchodizsz do sklepu, który wydaje się pusty, idealna okazja.")
+animate_text("Rozglądasz się po sklepie, jednak jedną rzecz zauważasz odrazu, wszystkie produkty co mają krótki termin ważnosci (typu owoce) są zepsute, bardzo zepsute..")
+animate_text("Ten sklep jest w stanie jakby nikogo tu od dawna nie było.")
+animate_text("*Ile mineło dni?, czemu to wszystko jest w takim stanie?*")
+animate_text('jedyne co znalazłeś jeszcze w dobrym stanie to makarony i produkty w puszkach,')
+animate_text("*nic ciekawego ani przydetnago tu nie ma* powiedziałeś kierując się w strone wyjścia")
+animate_text("Jeydny problem jest taki, że to coś stoi przy drzwiach,")
+animate_text("wiesz, że znajduję się wyjscie ewakuacyjne po drugiej stronie sklepu, jak i okna które można łatwo wybić")
+#_---------------------------------------------------------------------------------------------------------------
+def droga_ucieczki():
+    animate_text("a/A - wyjście ewakacyjne")
+    animate_text("b/B - przez okno ")
+    animate_text("nie może być źle prawda?")
+    odp_ucieczka = input().upper()
+    if odp_ucieczka == 'A':
+        animate_text("Zawrócłeś się, wolnym, cichym krokiem w strone drzwi ewakuacyjnych.")
+        animate_text("udeżyłeś przypadkiem metalową puszkę na ziemi, słyszysz jak dzwięk uderzeń metalu o podłoge rozprzeszenia sie po całym budynku,")
+        animate_text("zwróciło to uwage potwora który w tym momencie na ciebie biegnie,")
+        def attack_potwor():
+            if player.yourattack >= potwor.pcurrent_hp:
+                animate_text(f"Zadałeś mu {potwor.pcurrent_hp} obrażeń i pokonałeś ją!")
+                potwor.take_damage(potwor.pcurrent_hp)  
+            else:
+                animate_text(f"Zadałeś mu {player.yourattack} obrażeń!")
+                potwor.take_damage(player.yourattack) 
+            #--Symulacja walki
+        while player.current_hp > 0 and potwor.pcurrent_hp > 0:
+            attack_potwor()
+            if potwor.pcurrent_hp <= 0:
+                break 
+
+            player.take_damage(potwor.pherattack)
+            if player.current_hp <= 0:
+                sys.exit(0)  
+        if player.current_hp <= 0:
+            animate_text(f"{player.name}, przegrałeś!")
+        elif potwor.pcurrent_hp <= 0:
+            animate_text(f"{player.name}, wygrałeś.")
+            #---
+        animate_text("Wyszło na jedno i tak musiałeś się z tym bić.")
+
+    elif odp_ucieczka == 'B':
+        animate_text("ruszyłeś w strone okna, cicho i bezpośpiechu")
+        animate_text("na twoje szczęście okno jest już wybite, jedyny problem to duża ilość szkła, która możę  cię skaleczyc,")
+        animate_text("napewno chcesz isć?")
+        def uceiczka_okno():
+            animate_text("a/A - Tak")
+            animate_text("b\B Nie, idę dalej do drzwi awaryjnych")
+            odpucieczka = input().upper()
+            if odpucieczka == 'A':
+                animate_text("wyszedłeś przez okno, jednak się troche skaleczyłeś (-1hp)")
+                player.take_damage(1)
+            elif odpucieczka == 'B':
+                animate_text("Zawrócłeś się, wolnym, cichym krokiem w strone drzwi ewakuacyjnych.")
+                animate_text("udeżyłeś przypadkiem metalową puszkę na ziemi, słyszysz jak dzwiek uderzeń metalu o podłoge rozprzeszenia sie po całym budynku,")
+                animate_text("zwróciło to uwage potwora który w tym momencie na ciebie biegnie,")
+                def attack_potwor():
+                    if player.yourattack >= potwor.pcurrent_hp:
+                        animate_text(f"Zadałeś mu {potwor.pcurrent_hp} obrażeń i pokonałeś ją!")
+                        potwor.take_damage(potwor.pcurrent_hp)  
+                    else:
+                        animate_text(f"Zadałeś mu {player.yourattack} obrażeń!")
+                        potwor.take_damage(player.yourattack) 
+                    #--Symulacja walki
+                while player.current_hp > 0 and potwor.pcurrent_hp > 0:
+                    attack_potwor()
+                    if potwor.pcurrent_hp <= 0:
+                        break 
+
+                    player.take_damage(potwor.pherattack)
+                    if player.current_hp <= 0:
+                        sys.exit(0)
+
+                if player.current_hp <= 0:
+                    animate_text(f"{player.name}, przegrałeś!")
+                elif potwor.pcurrent_hp <= 0:
+                    animate_text(f"{player.name}, wygrałeś.")
+                animate_text("Wyszło na jedno i tak musiałeś się z tym bić.")
+        odpucieczka = uceiczka_okno()
+odp_ucieczka = droga_ucieczki()
+
+animate_text("wyszedłeś wkońcu ze sklepu")
+#-------------------------------------------------------
+animate_text("Po drugiej stronie zauważasz apteke, Budynek w dorbrym stanie, jak i Sklep ogólny, taki co ma wszystko (Auchan?) budynek, pomijając brak okien, tez wygląda w dobrym stanie.")
+animate_text("zauważasz też że to jedyne sklepy w okolicy.")
+animate_text("gdzie idziesz teraz?")
+
+def coteraz():
+    animate_text("a/A - apteka - *Może zajdę coś by zaopatrzyć ranny?*")
+    animate_text("b/B - ogólniak - *Myślę że będzie tam dużo przydatnych rzeczy*")
+    animate_text("c/C - dalsza przygoda - *Może kogoś znajde?*")
+    odpcotreaz = input().upper()
+    if odpcotreaz == "A":
+        animate_text("udałeś się do apteki")
+        animate_text("podeszłeś do drzwi które okazały się zamknięte, ")
+        def aptekawejscie():
+            animate_text("a/A - *Mogę spróbować wywarzyć drzwi?*")
+            animate_text("b/B - *A może przez okno?*")
+            animate_text("c/C - znajdz tylnie drzwi - *może są tylnie drzwi?*")
+            odpcotreaz2 = input().upper()
+            if odpcotreaz2 == "A":
+                animate_text("drzwi nie wyglądają na mocne, za 3 uderzeniem drzwi odpadły z zawiasów ")
+                animate_text("*zawiasy wyglądaja na stare, nic dziwnego że łatwo poszło.")
+                return 0
+            elif odpcotreaz2 == "B":
+                animate_text("tych okien nie da się otworzyć, ja każde domowe okno zostało ci je tylko wybić")
+                animate_text("po pierwszym uderzeniu zauważasz że to nie będzie takie proste, próbujesz jeszcze 2 razy lecz nic nowego")
+                def ostrze():
+                    animate_text("a/A - próbuj dalej")
+                    animate_text("b/B - znajdz może coś ostrego")
+                    odpO = input().upper()
+                    if odpO == "A":
+                        animate_text("po paru więcej mocniejszycz uderzeniach szkło wreście pękło.")
+                        animate_text("Pamiętaj, szkło jesst ostre i się skaleczyłeś w paru miejscach (-2hp, -5stamina)")
+                        player.no_stamina(5)
+                        player.take_damage(2)
+                        return 0
+                    elif odpO == "B":
+                        animate_text("przypomniałeś sobie o skrzynce z narzędziami z salonu, wyjmujesz z niej śrubokręt")
+                        animate_text("śrubokręt definityfnie zadał troche obrażeń, teraz powinno pójść lepiej, jak i poszło.")
+                        animate_text("Po kolejnym uderzeniu szkło się rozbiło całkowicie, poszło ładnie i gładko, (-1hp, -1stamina)")
+                        player.no_stamina(1)
+                        player.take_damage(1)
+                        return 0
+                    else: 
+                        return 0
+                odpO = ostrze()
+
+            elif odpcotreaz2 == "C":
+                animate_text("przeszedłeś budynek do okoła ale niewydaje się żeby były jakieś tylnie drzwi, coprawda jest spora dziura w ścianie, może kiedyś tu były drzwi?")
+            else:
+                return 0
+        odpcoteraz2 = aptekawejscie()
+        animate_text("Wszedłeś do środka, nic tu niezostało zniszczone, no oprócz tej Wielkiej dziury w ścianie, której w środku trudno nie zauważyć")
+        animate_text("rozejrzałeś się po aptece, znalazłeś sporo bandarzy, plastrów i pateczke pierwszej pomocy, zaopatrzyłeś swoje rany (+20hp)")
+        player.heal(20)
+        animate_text("różne leki ci się zbytnio nie przydadzą")
+        animate_text("wyszedłeś z budynku")
+        return 0
+    elif odpcotreaz == "B":
+        animate_text("potrzedłeś do budynku, drzwi są zamknięte")
+        def ogolniak():
+            animate_text("a/A - spróbuj wywarzyć drzwi")
+            animate_text("b/B - przejść przez okno.")
+            odpOG = input().upper()
+            if odpOG == 'A':
+                animate_text("Drzwi wypadają z zawiasów odrazu bez rzadnego problemu.")
+                return 0
+            elif odpOG == 'B':
+                animate_text("wchodzisz przez okno, kalęcząc się o szkło (-1hp)")
+                player.take_damage(1)
+            else:
+                return 0
+        odpOG = ogolniak()
+        animate_text("Ten sklep jest ogromny, znajdujesz sporo rzeczy, bandarze którymi opatrujesz sobie rany jednak dużo ich niebyło (+10hp)")
+        player.heal(10)
+        animate_text("z jedzenia praktycznie wszystko było zepsute oprócz niektórych produktów, *wyglądają niby na dobre...*, jesteś głodny nie?")
+        def jedzenie():
+            animate_text("a/A - zjedz to co się nadaje")
+            animate_text("b/B - nie jedz")
+            odpJ = input().upper()
+            if odpJ == 'A':
+                animate_text("Dużo tego nie było lecz nie czujesz się bardzo głodny, może i lepij (+5hp)")
+                player.heal(5)
+            elif odpJ == 'B':
+                animate_text("niedotknełeś nic z jedzenia, czujesz się troche głodny to prawda ale kto wie czy to wogule się jeszcze nadaje?")
+            else:
+                return 0
+        odpJ = jedzenie
+        animate_text("usłyszałeś jakieś uderzenie, jednak wybite okna nie były bez powodu")
+        def Pogolniak():
+            animate_text("a/A - poszukaj powodu hałasu - *Może jest ze mną ktoś jeszcze?*")
+            animate_text("b/B - uciekaj.")
+            odpPO = input().upper()
+            if odpPO == 'A':
+                animate_text("poszedłeś w strone hałąsu myślać że to albo zwierze, albo ktoś z nas. Byłeś w błędzie")
+                animate_text("To cię zobaczyło.")
+                def attack_potwor():
+                    if player.yourattack >= potwor2.p2current_hp:
+                        animate_text(f"Zadałeś mu {potwor2.p2current_hp} obrażeń i pokonałeś ją!")
+                        potwor2.take_damage(potwor2.p2current_hp)  
+                    else:
+                        animate_text(f"Zadałeś mu {player.yourattack} obrażeń!")
+                        potwor2.take_damage(player.yourattack) 
+                    #--Symulacja walki
+                while player.current_hp > 0 and potwor2.p2current_hp > 0:
+                    attack_potwor()
+                    if potwor2.p2current_hp <= 0:
+                        break 
+
+                    player.take_damage(potwor2.p2herattack)
+                    if player.current_hp <= 0:
+                        sys.exit(0)
+
+                if player.current_hp <= 0:
+                    animate_text(f"{player.name}, przegrałeś!")
+                elif potwor.pcurrent_hp <= 0:
+                    animate_text(f"{player.name}, wygrałeś.")
+
+                animate_text("I poco ci to było?")
+                animate_text("co prawda, ten nie wydawał się wogule na mocnego, w rozmiarze też mały, czyli są rózne ich rodzaje.")
+                animate_text("wyszedłeś z budynku")
+            elif odpPO == 'B':
+                animate_text("ruszyłeś w strone wyjścia szybkim krokiem")
+                animate_text("Tak długo jak nie wydasz żadnego dzwięku pownno być dobrze")
+        odpPO = Pogolniak()
+    elif odpcotreaz == "C":
+        return 0
+    else:
+        return 0
+odpcoteraz = coteraz()
+#_-------------------------------
+animate_text("-=-=-=-=-=-=-=-=-=--="*7)
+animate_text("szedłeś dalej ulicą")
+animate_text(" Usłyszałeś dzwięk silnika, troche dziwne gdyż myślałeś ze jesteś sam. . . ")
+animate_text("Odwracasz sięi widzisz pancernego warana, (no wiesz taki vann wojskowy), który ewidentnie jedzie w twoją strone. ")
+def pancernywaran():
+    animate_text("a/A - poczekaj, może jedak są tu inni ludzie?")
+    animate_text("b/B - uciekaj, znajdz gdzie się schować")
+    odpPW = input().upper()
+    if odpPW == 'A':
+        animate_text("Pancerny waran podjeżdża i wyskakuje z nich 3 panów w mundurach na żołnieża, ")
+        animate_text("Odrazu wsadzają cie do auta, nie miałeś czasu na reakcje,")
+        animate_text(" 'Nie ruszaj się, nic ci nie zrobimy' - powiedział jeden z panów, ")
+        def Nieruszajsie():
+            animate_text("a/A - słuchaj się tego co mówi, ten karabin na jego plecach nie wygląda zaciekawie. ")
+            animate_text("b/B - może da się jakoś uciec?")
+            odpNR = input().upper()
+            if odpNR == 'A':
+                return 0 
+            elif odpNR == 'B':
+                animate_text("'co kolwiek teraz myślisz nie rób tego, sytuacja jak dobrze wiesz nie jest zaciekawa,' - powiedział, ale dobrze o tym wiesz, w końcu ile razy się z tym biłeś?")
+                animate_text("'nie utrudniaj nam bardziej pracy niż już jest' - pora się posłuchać.")
+                return 0
+            else:
+                return 0
+        odpNR = Nieruszajsie()
+        animate_text("'Dobra, dzięki, chociaż tyle, to co widziałeś wcześniej, to co chcaiło cie zabić nazywamy Sorami.' - Sorami? ciekawe dlaczego taka nazwa, ")
+        animate_text("'Sory znajdują się wszedzie, nie ma państwa gdzie ich nie ma, Państwa które zostały połączył się i próbujemy znaleśc przyczyne tego wszystkiego, a jeżeli możliwe  to i lekarstwo' ")
+        animate_text(" 'napewno masz dużo pytań, zrobimy deal, bedziemy się wymieniać pytaniami ok? ty jedno, ja jednodo momentu jak skączą się pytania.' - więc Jakie masz pytanie?")
+        def Pytanie():
+            animate_text("a/A - Jakie dokładnie państwa?")
+            animate_text("b/B - Jak mnie znaleźliście?")
+            odpP = input().upper()
+            if odpP == 'A':
+                animate_text("'Naprawde cię to interesuje?' - zdziwionny, gdyż kogo interesuje polityka?")
+                animate_text("'W takiej sytuacji, Polska, bo my tu dalej jesteśmy, USA, Rosja, Chiny, Japonia, Niemcy, czyli te duże w sumie państwa, ale również Estonia jakoś się utrzymała")
+                return 0 
+            elif odpP == 'B':
+                animate_text("'Stałeś na środku ulicy. ale przed tym zauważyliśmy że pare Soren było marte, widać ze tuż po walce'")
+                animate_text("'A z czego zauważyliśmy, one nie zabijają się siebie nawzajem, one wsółpracują")
+                return 0 
+            else:
+                return 0
+        odpP = Pytanie()
+        animate_text("'Moja kolej na pytanie, Jak długo tu byłeś a co najważniejsze jak ty wogule przeżyłeś??? nie wygląasz na kogoś kto umie walczyć'")
+        animate_text("Pytanie z czasem to dobre faktycznie pytanie, Czas stoi w miejscu, skąd masz wiedzieć? *to czas nie stoi w miejscu?*")
+        animate_text("'no w sumie tak, głupie pytanie ale musiałęś być tu długo skoro wiesz że czas stoi w miejscu.'")
+        animate_text(" Usyszelicie jakieś walnięcie, któryś z panów krzyczy 'Sora!, musimy ztąd jechać!' i tak się staneło, kierowca dorazu ruszył i odjechaliście,")
+        animate_text("'Jedziemy spowrotem do bazy, widać ze czasu na więcej pytań nie ma'.") 
+    elif odpPW =='B':
+        animate_text("BYłeś zawolny, ktobypomyślał że takie brzydke auto szybko jeżdzi?, Wysiedli z niego 3 mężczyzn i zabrali cię do środka auta.")
+        animate_text(" 'Nie ruszaj się, nic ci nie zrobimy' - powiedział jeden z panów, ")
+        def Nieruszajsie():
+            animate_text("a/A - słuchaj się tego co mówi, ten karabin na jego plecach nie wygląda zaciekawie. ")
+            animate_text("b/B - może da się jakoś uciec?")
+            odpNR = input().upper()
+            if odpNR == 'A':
+                return 0 
+            elif odpNR == 'B':
+                animate_text("'Nieutrudniaj sprawy bardziej niż już jest!, nie jest zaciekawie, i fakt że chciałeś uciec też nie pomaga, kto normalny ucieka przed wojskiem?'")
+                animate_text("Fakt, Potwory by auta nie prowadziły. . . ")
+                return 0
+            else:
+                return 0
+        odpNR = Nieruszajsie()
+        animate_text("'Dobra, już spokojnie? to co widziałeś wcześniej, to co chcaiło cie zabić nazywamy Sorami.' - Sorami? ciekawe dlaczego taka nazwa, ")
+        animate_text("'Sory znajdują się wszedzie, nie ma państwa gdzie ich nie ma, Państwa które zostały połączył się i próbujemy znaleśc przyczyne tego wszystkiego, a jeżeli możliwe  to i lekarstwo' ")
+        animate_text(" 'napewno masz dużo pytań, zrobimy deal, bedziemy się wymieniać pytaniami ok? ty jedno, ja jednodo momentu jak skączą się pytania.' - więc Jakie masz pytanie?")
+        def Pytanie():
+            animate_text("a/A - Jakie dokładnie państwa?")
+            animate_text("b/B - Jak mnie znaleźliście?")
+            odpP = input().upper()
+            if odpP == 'A':
+                animate_text("'Naprawde cię to interesuje?, chcesz uciekać od wojska i pytasz się o sprawy związane z wojskiem?' - zdziwionny , gdyż kogo interesuje polityka?")
+                animate_text("'W takiej sytuacji, Polska, bo my tu dalej jesteśmy, USA, Rosja, Chiny, Japonia, Niemcy, czyli te duże w sumie państwa, ale również Estonia jakoś się utrzymała")
+                return 0 
+            elif odpP == 'B':
+                animate_text("'Człowieka trudno nie odrużnić, tymbardziej ktogoś kto ucieka, ale przed tym zauważyliśmy że pare Soren było marte, widać ze tuż po walce'")
+                animate_text("'A z czego zauważyliśmy, one nie zabijają się siebie nawzajem, one wsółpracują")
+                return 0 
+            else:
+                return 0
+        odpP = Pytanie()
+        animate_text("'Moja kolej na pytanie, Jak długo tu byłeś a co najważniejsze jak ty wogule przeżyłeś??? nie wygląasz na kogoś kto umie walczyć'")
+        animate_text("Pytanie z czasem to dobre faktycznie pytanie, Czas stoi w miejscu, skąd masz wiedzieć? *to czas nie stoi w miejscu?*")
+        animate_text("'no w sumie tak, głupie pytanie ale musiałęś być tu długo skoro wiesz że czas stoi w miejscu.'")
+        animate_text(" Usyszelicie jakieś walnięcie, któryś z panów krzyczy 'Sora!, musimy ztąd jechać!' i tak się staneło, kierowca dorazu ruszył i odjechaliście,")
+        animate_text("'Jedziemy spowrotem do bazy, widać ze czasu na więcej pytań nie ma'.")
+odpPW = pancernywaran()
+
+print("=-=-=-=-=-==--=-=-="*7)
+animate_text("znaleźliście siępod murami bazy wojskowej, pierwsze na co zwróciłeś uwage to byli cywile, zwykli cywile")
+animate_text("' tutaj powinno być bezpieczne, miejsce jest strzeżone z każdej strony, a cywili takich jak ty trenujemy by mogli jakoś się obronić, ")
+animate_text("'Najgorsze co tu jest? nie widaomo ile czasu mineło, cały czas jest dzień, śłońce się nie rusza i niewygląda jak by zamierzało.' - spojrzał się na niebo, ty też,")
+animate_text("*hej ale przynajmniej łądna pogoda jest,* - powiedziałeś by poprawić troche humor, co go rośmieszyło, jakoś")
+animate_text("'masz racje, przynajmniej tyle,'")
+animate_text("rozglądałeś się po placówce oraz zapoznywałeś się z ludzmi,")
+animate_text(" w pewnym momencie zawył alarm, żołnieże coś krzyczą a mur się rozwala, Sory Przyszły, całą gromadą to tak jaby wiedziały że tu jesteśmy,")
+animate_text("NIebo nagle zrobiło sięciemne, słonce znikło,")
