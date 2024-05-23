@@ -47,9 +47,9 @@ player = Character()
 #---------------------------------------
 class Matka:
     def __init__(self):
-        self.Mmax_hp = 50
-        self.Mcurrent_hp = 50
-        self.Mherattack = 10
+        self.Mmax_hp = 10
+        self.Mcurrent_hp = 10
+        self.Mherattack = 5
 
     def take_damage(self, Mdamage_amount):
         self.Mcurrent_hp -= Mdamage_amount
@@ -62,8 +62,8 @@ mother = Matka()
 #---------------------------------
 class Potwor:
     def __init__(self):
-        self.pmax_hp = 50
-        self.pcurrent_hp = 50
+        self.pmax_hp = 20
+        self.pcurrent_hp = 20
         self.pherattack = 5
 
     def take_damage(self, pdamage_amount):
@@ -99,8 +99,8 @@ animate_text("Sięgnąłeś po telefon. Wyświetlacz pokazywał godzinę 9:30. \
 animate_text("*Dziwne... Zazwyczaj już by ktoś mnie siłą zrzucił z łóżka* \n")
 #------------------------------------
 def wybierz_odp1():
-    animate_text("a/A - Zawołaj ")
-    animate_text("b/B - Wstań z łóżka ")
+    animate_text("a/A - Zawołaj \n")
+    animate_text("b/B - Wstań z łóżka \n")
     odp1 = input().upper()
     if odp1 == "A":
         animate_text("*Mamo?*\n ")
@@ -112,7 +112,7 @@ def wybierz_odp1():
         return 0
 odp1 = wybierz_odp1()
 animate_text("Wstałeś z łóżka i podeszłeś do drzwi. Wyjrzałeś na korytarz. \n")
-animate_text("Jest cicho i pusto ")
+animate_text("Jest cicho i pusto \n")
 #_----------------------------------------------------
 def wybierz_odp2():
     animate_text("a/A - Wyjdź z pokoju\n ")
@@ -165,8 +165,8 @@ attack = choose_attack()
 animate_text("Udało ci się jakimś cudem uciec do garażu, tylko co teraz?\n ")
 #_----------------------------------------------------------------------
 def wybierz_odp5():
-    animate_text("a/A - Rozglądaj się po przydatne rzeczy ")
-    animate_text("b/B - Przemyśl sytuacje ")
+    animate_text("a/A - Rozglądaj się po przydatne rzeczy \n")
+    animate_text("b/B - Przemyśl sytuacje \n")
     odp5 = input().upper()
     if odp5 == "A":
         animate_text(" W garażu znajdujesz wiele dobrych rzeczy, ale z wszystkimi trudno się zabrać.\n ")
@@ -175,7 +175,7 @@ def wybierz_odp5():
             animate_text("b - Stare buty ojca. Twój rozmiar oraz są świetne do biegania, aż przypominając ci się stare czasy.\n ")
             animate_text("c - Młotek, trochę cieżki ale poręczny. \n")
             animate_text("d - Piła mechaniczna. Działa ale jest bardzo ciężka. \n")
-            animate_text("e - Nic nie bierzesz.")
+            animate_text("e - Nic nie bierzesz.\n")
             odp7 = input().upper()
             if odp7 == 'A':
                 animate_text("Bierzesz grabie, są cieżkie więc tylko je. (+5 attack, -2 stamina)\n")
